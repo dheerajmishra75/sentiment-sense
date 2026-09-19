@@ -48,10 +48,9 @@ export function loadModel(onProgress?: (p: LoadProgress) => void): Promise<Class
       const pipe = await pipeline("text-classification", MODEL_ID, {
         dtype: "q8",
         progress_callback: (data: { status?: string; progress?: number }) => {
-          onProgress?.({
-            status: data?.status ?? "loading",
-            progress: typeof data?.progress === "number" ? data.progress : undefined,
-          });
+          const update: LoadProgress = { status: data?.status ?? "loading" };
+          if (typeof data?.progress === "number") update.progress = data.progress;
+          onProgress?.(update);
         },
       });
       return pipe as unknown as Classifier;
