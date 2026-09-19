@@ -108,11 +108,11 @@ export async function analyzeText(
   const ranked = (Object.entries(probabilities) as Array<[keyof typeof probabilities, number]>).sort(
     (a, b) => b[1] - a[1],
   );
-  const [topKey, topScore] = ranked[0];
+  const top = ranked[0] ?? (["neutral", probabilities.neutral] as const);
 
   return {
-    sentiment: topKey.toUpperCase() as SentimentLabel,
-    confidence: topScore,
+    sentiment: String(top[0]).toUpperCase() as SentimentLabel,
+    confidence: Number(top[1]),
     probabilities,
     vader: { positive: v.pos, neutral: v.neu, negative: v.neg, compound: v.compound },
     characters: trimmed.length,
