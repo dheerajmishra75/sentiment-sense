@@ -13,9 +13,8 @@ import { addHistory, clearHistory, readHistory, type HistoryEntry } from "@/lib/
 const MAX_CHARS = 5000;
 
 export const Route = createFileRoute("/analyze")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    text: typeof search["text"] === "string" ? (search["text"] as string) : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { text?: string } =>
+    typeof search["text"] === "string" ? { text: search["text"] as string } : {},
   head: () => ({
     meta: [
       { title: "Analyze Text — Sentiment Analysis" },
