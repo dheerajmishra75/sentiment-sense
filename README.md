@@ -4,13 +4,29 @@ Sentiment Sense is an interactive sentiment analysis application that analyzes t
 
 The project takes sentiment analysis beyond a notebook by providing an interactive web interface where users can enter completely new text and receive model-based sentiment predictions, confidence scores, probability distribution, and supporting VADER scores.
 
-## Live Demo
+> **Analyze text. Understand sentiment.**
 
-🌐 **Live Website:**  
-https://sentiment-sense-ten.vercel.app/
+## 🚀 Live Demo
 
-💻 **GitHub Repository:**  
-https://github.com/dheerajmishra75/sentiment-sense
+[Open Sentiment Sense](https://sentiment-sense-ten.vercel.app/)
+
+## 📸 Application Preview
+
+### Home
+
+![Sentiment Sense Home](screenshots/Home%20%282%29.png)
+
+### Analyze
+
+![Sentiment Sense Analyze](screenshots/Analyze.png)
+
+### How It Works
+
+![Sentiment Sense How It Works](screenshots/How-It-Works.png.png)
+
+### About
+
+![Sentiment Sense About](screenshots/About%20%282%29.png)
 
 ## Overview
 
@@ -206,15 +222,6 @@ Sentiment Classification
 Supporting VADER Analysis
     ↓
 Interactive Result
-Screenshots
-Home
-
-Analyze
-
-How It Works
-
-About
-
 Getting Started
 
 Clone the repository:
