@@ -1,291 +1,212 @@
-# Sentiment Sense
+# Sentiment Sense — Sentiment Analysis
 
-FINAL ONE-SHOT BUILD — SENTIMENT ANALYSIS WEBSITE
+Sentiment Sense is an interactive sentiment analysis application that analyzes text and classifies it as **Positive, Neutral, or Negative** using a pretrained **CardiffNLP RoBERTa sentiment model**, with **VADER** providing additional sentiment analysis.
 
-Build the complete Sentiment Analysis website in this single task.
+The project takes sentiment analysis beyond a notebook by providing an interactive web interface where users can enter completely new text and receive model-based sentiment predictions, confidence scores, probability distribution, and supporting VADER scores.
 
-I have attached my original `Sentiment Analysis(1).ipynb`. Use it as the source of truth for the sentiment-analysis methodology.
+## Live Demo
 
-IMPORTANT:
+🌐 **Live Website:**  
+https://sentiment-sense-ten.vercel.app/
 
-The `Reviews.csv` dataset is NOT the product.
+💻 **GitHub Repository:**  
+https://github.com/dheerajmishra75/sentiment-sense
 
-Do not make the website depend on the dataset for user predictions.
+## Overview
 
-The final website must allow ANY user to paste ANY NEW TEXT from anywhere and immediately analyze its sentiment.
+Sentiment Sense combines two different sentiment analysis approaches:
 
-==================================================
+- **RoBERTa** — Primary sentiment classification model
+- **VADER** — Supporting rule-based sentiment analysis
 
-CORE PURPOSE
+The application accepts arbitrary user text and processes it directly through the sentiment models. The runtime application does not require the Amazon Reviews dataset for making predictions.
 
-==================================================
+## Features
 
-Website name:
+- Analyze completely new text
+- Positive, Neutral, and Negative classification
+- RoBERTa-based sentiment prediction
+- Confidence score for the predicted sentiment
+- Full probability distribution
+- VADER sentiment scores for supporting analysis
+- Example text inputs
+- Recent analysis history
+- Clear history functionality
+- Loading and validation states
+- Responsive user interface
+- Browser-based model inference
 
-SENTIMENT ANALYSIS
+## Sentiment Analysis Pipeline
 
-Main purpose:
+```text
+User Input
+    ↓
+Text Tokenization
+    ↓
+CardiffNLP RoBERTa Model
+    ↓
+Negative / Neutral / Positive Probabilities
+    ↓
+Predicted Sentiment + Confidence
 
-A user can paste any text, review, comment, message, feedback, social-media text, or other written content and get:
+        +
 
-POSITIVE
+User Input
+    ↓
+VADER Sentiment Analyzer
+    ↓
+Positive / Neutral / Negative / Compound Scores
+    ↓
+Supporting Sentiment Analysis
+Models Used
+CardiffNLP RoBERTa
 
-NEUTRAL
+The primary sentiment classifier uses:
 
-or
+cardiffnlp/twitter-roberta-base-sentiment
 
-NEGATIVE
-
-with the actual model confidence/probabilities.
-
-The text does NOT need to exist in the original dataset.
-
-User flow:
-
-PASTE ANY TEXT
-
-→ ANALYZE SENTIMENT
-
-→ REAL MODEL ANALYSIS
-
-→ POSITIVE / NEUTRAL / NEGATIVE
-
-→ CONFIDENCE
-
-==================================================
-
-ORIGINAL NOTEBOOK
-
-==================================================
-
-Use my attached notebook to preserve the actual sentiment-analysis approach.
-
-The notebook uses:
-
-- NLTK VADER SentimentIntensityAnalyzer
-
-- VADER polarity scores
-
-- CardiffNLP `cardiffnlp/twitter-roberta-base-sentiment`
-
-- Hugging Face tokenizer/model
-
-- RoBERTa sentiment probabilities
-
-Keep this methodology.
-
-Use RoBERTa as the primary sentiment result and VADER as supporting analysis.
-
-Do NOT replace this with:
-
-- keyword matching
-
-- hard-coded sentiment
-
-- random results
-
-- mock predictions
-
-- a completely unrelated model
-
-==================================================
-
-NEW USER TEXT
-
-==================================================
-
-This is the most important requirement.
-
-The user can enter text that was NEVER present in the original dataset.
-
-Examples:
-
-"I absolutely loved this product."
-
-"This movie was okay."
-
-"The service was terrible."
-
-"I am really excited about tomorrow."
-
-"The experience was disappointing but the staff were helpful."
-
-The system must analyze the actual submitted text using the trained/pretrained sentiment models.
-
-Do NOT compare the text against the dataset.
-
-Do NOT search the dataset for similar sentences.
-
-Do NOT require `Reviews.csv` at runtime.
-
-The dataset is only reference/training/evaluation material from the original project.
-
-==================================================
-
-REAL SENTIMENT OUTPUT
-
-==================================================
-
-The final result must be:
-
-POSITIVE
-
-NEUTRAL
-
-or
-
-NEGATIVE
-
-Use the actual RoBERTa probabilities.
-
-Show:
-
-Overall Sentiment
-
-Confidence
-
-Positive %
-
-Neutral %
-
-Negative %
-
-Also show VADER results as supporting information:
-
-Positive
-
-Neutral
+The model produces probabilities for:
 
 Negative
+Neutral
+Positive
 
-Compound
+The highest probability is used as the primary predicted sentiment.
 
-Do not fabricate confidence.
+VADER
 
-==================================================
+VADER is used as a supporting sentiment analyzer through:
 
-MAIN ANALYZER
+SentimentIntensityAnalyzer()
 
-==================================================
+It provides:
 
-Create the main page:
+Positive score
+Neutral score
+Negative score
+Compound score
 
-/analyze
+Using both approaches provides additional context around the sentiment prediction instead of relying on a single sentiment signal.
 
-Large input area:
+How It Works
+1. Enter Text
 
-"Paste or type anything here..."
+The user enters any text they want to analyze.
 
-Primary button:
+Example:
 
-ANALYZE SENTIMENT
+I really enjoyed this product. The quality is excellent.
+2. Tokenization
 
-Also include:
+The input text is processed using the tokenizer associated with the CardiffNLP RoBERTa model.
 
-- character counter
+3. RoBERTa Prediction
 
-- clear button
+The tokenized input is passed to the pretrained RoBERTa sentiment model.
 
-- example text buttons
+The model returns probabilities for the three sentiment classes.
 
-- loading state
+4. Sentiment Classification
 
-- validation
+The highest probability determines the primary sentiment:
 
-- responsive design
+Negative
+Neutral
+Positive
+5. Supporting VADER Analysis
 
-Loading:
+The same text is also analyzed using VADER to provide additional sentiment scores.
 
-"Analyzing sentiment..."
+6. Result
 
-After analysis, show the result clearly.
+The application displays:
 
-==================================================
+Predicted sentiment
+Confidence
+Positive probability
+Neutral probability
+Negative probability
+VADER sentiment scores
+Application Pages
+Home
 
-USER-FRIENDLY HOMEPAGE
+Introduces Sentiment Sense and the purpose of the application.
 
-==================================================
+Analyze
 
-The homepage should immediately explain the product.
+The main sentiment analysis interface where users can:
 
-Headline:
+Enter text
+Use example inputs
+Run sentiment analysis
+View prediction results
+View probability distribution
+View VADER scores
+Access recent analysis history
+How It Works
 
-"Understand the sentiment behind any text."
+Explains the sentiment analysis workflow, models, and prediction process.
 
-Supporting text:
+About
 
-"Paste a review, comment, message, feedback, or any text and instantly analyze whether its sentiment is positive, neutral, or negative."
+Provides information about the project and the technologies used.
 
-Primary CTA:
+Dataset
 
-ANALYZE SENTIMENT
+The project notebook references the Amazon Reviews dataset (Reviews.csv) for sentiment-analysis experimentation and analysis.
 
-Add a few clickable example texts so users can understand the product immediately.
+The deployed application does not require the dataset to perform runtime predictions because sentiment inference is performed using the pretrained sentiment model.
 
-==================================================
-
-DESIGN — VERY IMPORTANT
-
-==================================================
-
-Make the website look like a NORMAL PROFESSIONAL WEBSITE.
-
-It must NOT look AI-generated.
-
-Use a simple design similar in spirit to a clean professional information/product website.
-
-Use:
-
-- normal white/light background
-
-- dark text
-
-- subtle grey borders
-
-- simple restrained accent colour
-
-- clean typography
-
-- normal buttons
-
-- professional cards
-
-- good spacing
-
-- subtle hover effects
-
-- minimal animations
-
-The design should feel like a real website made by a developer/designer.
-
-DO NOT use:
-
-- neon colours
-
-- glowing effects
-
-- futuristic AI graphics
-
-- robot illustrations
-
-- excessive gradients
-
-- excessive glassmorphism
-
-- giant decorative AI elements
-
-- overly animated backgrounds
-
-Keep it simple, trustworthy and professional.
-
-==================================================
-
-PAGES
-
-==================================================
-
-Create:
-
+Technology Stack
+Category	Technology
+Programming	Python, JavaScript
+NLP	Natural Language Processing
+Primary Model	CardiffNLP RoBERTa
+Supporting Model	VADER
+Transformers	Hugging Face Transformers
+Model Inference	Browser-based
+Storage	Local Storage
+Frontend	React
+Development	Vite
+Example
+Input
+This movie was absolutely amazing. I loved every minute of it.
+Output
+Sentiment: Positive
+Confidence: Model-generated probability
+
+Positive: ...
+Neutral: ...
+Negative: ...
+
+VADER:
+Positive: ...
+Neutral: ...
+Negative: ...
+Compound: ...
+
+The exact probabilities depend on the model's inference for the provided text.
+
+Project Objective
+
+The goal of Sentiment Sense is to demonstrate how pretrained NLP models can be integrated into an interactive application for practical text analysis.
+
+The project focuses on the complete workflow:
+
+Text Input
+    ↓
+NLP Processing
+    ↓
+Transformer Model
+    ↓
+Probability Distribution
+    ↓
+Sentiment Classification
+    ↓
+Supporting VADER Analysis
+    ↓
+Interactive Result
+Screenshots
 Home
 
 Analyze
@@ -294,265 +215,55 @@ How It Works
 
 About
 
-Navigation should be simple.
+Getting Started
 
-The Analyze page must be the main focus.
+Clone the repository:
 
-==================================================
+git clone https://github.com/dheerajmishra75/sentiment-sense.git
 
-HOW IT WORKS
+Navigate to the project:
 
-==================================================
+cd sentiment-sense
 
-Explain simply:
+Install dependencies:
 
-USER TEXT
+npm install
 
-↓
+Start the development server:
 
-VADER + RoBERTa
-
-↓
-
-SENTIMENT PROBABILITIES
-
-↓
-
-FINAL SENTIMENT
-
-Explain that the system analyzes linguistic patterns and produces a sentiment classification.
-
-Keep technical details understandable.
-
-==================================================
-
-RESULT EXPERIENCE
-
-==================================================
-
-Make the result visually clear.
-
-Example:
-
-SENTIMENT
-
-POSITIVE
-
-Confidence
-
-94%
-
-Positive 94%
-
-Neutral 4%
-
-Negative 2%
-
-Supporting Analysis
-
-VADER Compound: 0.89
-
-[ ANALYZE ANOTHER TEXT ]
-
-Use the actual values returned by the models.
-
-==================================================
-
-IMPORTANT ACCURACY RULE
-
-==================================================
-
-Do not promise 100% accuracy.
-
-Do not manually force sentiment based on individual keywords.
-
-The model should determine sentiment from the complete submitted text.
-
-A completely new sentence must be processed normally.
-
-==================================================
-
-BACKEND
-
-==================================================
-
-If required, create a clean Python FastAPI inference backend using:
-
-- Python
-
-- FastAPI
-
-- NLTK
-
-- Transformers
-
-- PyTorch
-
-- Hugging Face CardiffNLP RoBERTa
-
-Create:
-
-POST /api/analyze
-
-Request:
-
-{
-
-  "text": "user text"
-
-}
-
-Return the actual:
-
-- sentiment
-
-- confidence
-
-- positive probability
-
-- neutral probability
-
-- negative probability
-
-- VADER scores
-
-The frontend must use the real API.
-
-Do not use mock API responses.
-
-==================================================
-
-PRODUCTION
-
-==================================================
-
-The website must not depend on localhost in production.
-
-Use:
-
-VITE_API_URL
-
-for the backend URL.
-
-Handle backend errors gracefully.
-
-Never show Python errors, stack traces, localhost URLs, model paths, or developer debugging information to normal users.
-
-==================================================
-
-HISTORY
-
-==================================================
-
-Add a simple Recent Analyses section using localStorage.
-
-Store:
-
-- text preview
-
-- sentiment
-
-- confidence
-
-- timestamp
-
-Allow the user to clear history.
-
-No login required.
-
-==================================================
-
-RESPONSIVE
-
-==================================================
-
-The website must work properly on:
-
-- mobile
-
-- tablet
-
-- laptop
-
-- desktop
-
-A user should be able to open the website on their phone, paste any text, and analyze it easily.
-
-==================================================
-
-FINAL TEST
-
-==================================================
-
-Before finishing, test the REAL visible Analyzer with:
-
-- clearly positive text
-
-- clearly negative text
-
-- neutral text
-
-- completely new text
-
-- short text
-
-- long text
-
-- review
-
-- casual message
-
-Verify that the displayed sentiment and confidence come from the actual model outputs.
-
-==================================================
-
-ABSOLUTE REQUIREMENTS
-
-==================================================
-
-Do NOT ask me to upload `Reviews.csv`.
-
-Do NOT make users provide the dataset.
-
-Do NOT compare user text with the dataset.
-
-Do NOT use mock results.
-
-Do NOT use hard-coded sentiment.
-
-Do NOT use keyword-only sentiment detection.
-
-Do NOT replace the original notebook methodology with an unrelated approach.
-
-Do NOT create a separate demo-only analyzer.
-
-The user must be able to paste ANY NEW TEXT and get the real model's sentiment analysis.
-
-Do not ask me for another prompt.
-
-Do not give me a TODO list.
-
-Do not stop after creating only the frontend.
-
-Build, connect, test and finish the complete Sentiment Analysis website in this one task.
-
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/6f8df3ac-1e3e-4e4c-a2d2-390cd59bd8f9).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
 npm run dev
-```
+
+Open the local development URL provided by Vite in your browser.
+
+Important Note
+
+The CardiffNLP RoBERTa model is loaded for browser-based inference. The initial analysis may take longer while the required model resources are downloaded and initialized.
+
+Subsequent analyses can run after the model has been loaded.
+
+Limitations
+Sentiment predictions are model-based estimates and should not be treated as absolute judgments.
+Prediction quality depends on the language, context, and type of text provided.
+The pretrained RoBERTa model is not retrained specifically for this project.
+Initial browser-based model loading may take some time.
+VADER provides complementary sentiment scores rather than replacing the primary transformer-based prediction.
+Future Improvements
+Add multilingual sentiment analysis
+Support batch text analysis
+Add CSV upload for large-scale sentiment analysis
+Add sentiment visualization dashboards
+Add downloadable analysis reports
+Compare additional pretrained transformer models
+Add domain-specific sentiment models
+Author
+
+Dheeraj Mishra
+
+B.Tech CSE Student | Data Science & Machine Learning Enthusiast
+
+GitHub:
+https://github.com/dheerajmishra75
+
+Disclaimer
+
+Sentiment Sense provides machine-learning-based sentiment estimates for the text provided by the user. Predictions can vary depending on language, context, and model limitations and should not be treated as definitive interpretations of human emotion.
